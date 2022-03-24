@@ -16,5 +16,12 @@
   "bugs": {
     "url": "https://github.com/igavelyuk/dmytro-dzhashi-circular-pro/issues"
   },
-  "homepage": "https://github.com/igavelyuk/dmytro-dzhashi-circular-pro#readme"
+  "homepage": "https://github.com/igavelyuk/dmytro-dzhashi-circular-pro#readme",
+  "dependencies": {
+    "gulp": "^4.0.2",
+    "subset-font": "^1.4.0"
+  },
+  "devDependencies": {
+    "gulp-ttf2woff": "^1.1.1"
+  }
 }

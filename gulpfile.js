@@ -6,28 +6,49 @@ const {
   series,
   parallel
 } = require('gulp');
+const subsetFont = require('subset-font');
+const ttf2woff = require('gulp-ttf2woff');
 
 
+// Configs per project
+const folder = ""; // "preview-file"
+const assets = folder + ""; // "/assets"
+const assetFinal = ""; // "assets"
+// All paths
 const paths = {
   css: {
-    src: ['./src/' + assets + '/css/**/*.css'],
-    dest: './dist/' + assets + '/tmp/css/',
-    srcone: ['./dist/' + assets + '/tmp/css/**/*.css'],
-    destone: './dist/' + assets + '/css/',
+    src: ['./src' + assets + '/css/**/*.css'],
+    dest: './dist' + assets + '/tmp/css/',
+    srcone: ['./dist' + assets + '/tmp/css/**/*.css'],
+    destone: './dist' + assets + '/css/',
   },
   fonts_ttf: {
-    src: ['./src/' + assets + '/fonts/**/*'],
-    dest: './dist/' + assets + '/fonts/',
+    src: ['./src' + assets + '/fonts/**/*'],
+    dest: './dist' + assets + '/fonts/',
   },
   fonts_web: {
-    src: ['./src/' + assets + '/webfonts/**/*'],
-    dest: './dist/' + assets + '/webfonts/',
+    src: ['./src' + assets + '/webfonts/**/*'],
+    dest: './dist' + assets + '/webfonts/',
   }
 };
 
 async function doAll() {
   series(copyFontsTTF, copyFontsWeb, cacheBust)();
 }
+
+function copyTTF2WOFF() {
+  return src(['./src/fonts/*.ttf'])
+    .pipe(ttf2woff())
+    .pipe(dest('./dist/fonts/'));
+}
+
+
+// const mySfntFontBuffer = Buffer.from(/*...*/);
+//
+// // Create a new font with only the characters required to render "Hello, world!" in WOFF2 format:
+// const subsetBuffer = await subsetFont(mySfntFontBuffer, 'Hello, world!', {
+//   targetFormat: 'woff2',
+// });
 
 function copyFontsTTF() {
   return src(paths.fonts_ttf.src)
@@ -56,6 +77,7 @@ function watcher() {
 }
 // Export tasks to make them public
 exports.doAll = doAll;
+exports.copyTTF2WOFF = copyTTF2WOFF;
 exports.copyFontsTTF = copyFontsTTF;
 exports.copyFontsWeb = copyFontsWeb;
 exports.cacheBust = cacheBust;
