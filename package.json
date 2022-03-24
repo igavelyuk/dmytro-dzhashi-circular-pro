@@ -18,10 +18,13 @@
   },
   "homepage": "https://github.com/igavelyuk/dmytro-dzhashi-circular-pro#readme",
   "dependencies": {
+    "fontforge": "^0.0.4",
     "gulp": "^4.0.2",
+    "gulp-fonter": "^0.3.0",
     "subset-font": "^1.4.0"
   },
   "devDependencies": {
+    "gulp-fontgen": "^0.2.5",
     "gulp-ttf2woff": "^1.1.1"
   }
 }

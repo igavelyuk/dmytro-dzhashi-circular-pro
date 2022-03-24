@@ -8,7 +8,7 @@ const {
 } = require('gulp');
 const subsetFont = require('subset-font');
 const ttf2woff = require('gulp-ttf2woff');
-
+const fonter = require('gulp-fonter');
 
 // Configs per project
 const folder = ""; // "preview-file"
@@ -35,6 +35,16 @@ const paths = {
 async function doAll() {
   series(copyFontsTTF, copyFontsWeb, cacheBust)();
 }
+
+task('fonts', () => {
+  return src('./src/fonts/*')
+    .pipe(fonter({
+        subset: [190],
+        formats: ['woff', 'ttf']
+      }))
+    .pipe(dest('./dist/'));
+});
+
 
 function copyTTF2WOFF() {
   return src(['./src/fonts/*.ttf'])
