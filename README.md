@@ -17,3 +17,6 @@ node -v > .nvmrc
 npm install --global gulp-cli
 npm init -y
 ```
+#### gulpfile.js
+`touch gulpfile.js`
+`nano gulpfile.js`
